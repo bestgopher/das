@@ -12,6 +12,15 @@ def reverse(s, start, stop):
         reverse(s, start + 1, stop - 1)
 
 
+def reverse_iterative(s):
+    """Reverse elements in sequence s."""
+    start, stop = 0, len(s)
+    while start < stop - 1:
+        s[start], s[stop - 1] = s[stop - 1], s[start]
+        start += 1
+        stop -= 1
+
+
 def power(x, n):
     """Compute the value x**n for integer n."""
     if n == 0:
