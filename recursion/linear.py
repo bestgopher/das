@@ -12,6 +12,24 @@ def reverse(s, start, stop):
         reverse(s, start + 1, stop - 1)
 
 
+def power(x, n):
+    """Compute the value x**n for integer n."""
+    if n == 0:
+        return 1
+    return x * power(x, n - 1)
+
+
+def power_plus(x, n):
+    """Compute the value x**n for integer n."""
+    if n == 0:
+        return 1
+    partial = power(x, n // 2)
+    result = partial * partial  # reply on truncated division
+    if n % 2 == 1:  # if n odd, include extra factor of x
+        result *= x
+    return result
+
+
 if __name__ == '__main__':
     def main():
         assert 45 == linear_sum(list(range(10)), 10)
