@@ -32,6 +32,25 @@ def is_matched(expr):
     return s.is_empty()
 
 
+def is_matched_html(html: str):
+    """Return True if all HTML tags are properly match; False otherwise."""
+    s = ArrayStack()
+    j = html.find("<")
+    while j != -1:
+        k = html.find(">", j + 1)
+        if k == -1:
+            return False
+        tag = html[j + 1: k]
+        if not tag.startswith("/"):
+            s.push(tag)
+        else:
+            if s.is_empty() or tag[1:] != s.pop():
+                return False
+        j = html.find("<", k + 1)
+
+    return s.is_empty()
+
+
 if __name__ == '__main__':
     reverse_file("stack.py")
     print(is_matched("([]){([])}[]"))
