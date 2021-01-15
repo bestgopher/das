@@ -16,5 +16,22 @@ def reverse_file(filename):
     output.close()
 
 
+def is_matched(expr):
+    """Return True if all delimiters are properly matched; False otherwise."""
+    lefty = "({["
+    rightly = ")}]"
+    s = ArrayStack()
+
+    for i in expr:
+        if i in lefty:
+            s.push(i)
+        else:
+            if s.is_empty() or lefty.index(s.pop()) != rightly.index(i):
+                return False
+
+    return s.is_empty()
+
+
 if __name__ == '__main__':
     reverse_file("stack.py")
+    print(is_matched("([]){([])}[]"))
