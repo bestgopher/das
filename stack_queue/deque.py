@@ -66,21 +66,15 @@ if __name__ == '__main__':
     d = ArrayDeque()
 
     for i in range(20):
-        if i % 2 == 0:
-            d.add_last(i)
-        else:
-            d.add_first(i)
-    print(d._data)
+        d.add_first(i)
     while not d.is_empty():
         print(d.delete_last())
 
     d = ArrayDeque()
 
     for i in range(20):
-        if i % 2 == 0:
-            d.add_last(i)
-        else:
-            d.add_first(i)
+        d.add_last(i)
+
     print(d._data)
     while not d.is_empty():
         print(d.delete_first())
