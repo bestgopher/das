@@ -36,6 +36,9 @@ class ArrayQueue:
         if self.is_empty():
             raise Empty("Queue is empty")
 
+        if len(self._data) // self._size >= 4:
+            self._resize(len(self._data) // 2)
+
         answer = self._data[self._front]
         self._data[self._front] = None
         self._front = (self._front + 1) % len(self._data)
@@ -60,3 +63,14 @@ class ArrayQueue:
             self._data[k] = old[walk]
             walk = (1 + walk) % len(old)
         self._front = 0
+
+
+if __name__ == '__main__':
+
+    queue = ArrayQueue()
+
+    for i in range(30):
+        queue.enqueue(i)
+
+    while not queue.is_empty():
+        print(queue.dequeue())
