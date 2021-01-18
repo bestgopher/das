@@ -1,4 +1,4 @@
-from stack_queue.exceptions import Empty
+from exceptions import Empty
 from stack_queue.queue_base import BaseQueue
 
 
