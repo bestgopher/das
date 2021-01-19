@@ -55,3 +55,9 @@ if __name__ == '__main__':
 
     while not q.is_empty():
         print(q.dequeue())
+
+    for i in range(20):
+        q.enqueue(i)
+
+    while not q.is_empty():
+        print(q.dequeue())
