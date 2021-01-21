@@ -42,7 +42,7 @@ class _DoublyLinkedBase:
         self._header = _DoubleNode(None, None, None)
         self._trailer = _DoubleNode(None, None, None)
         self._header.next = self._trailer
-        self._trailer.next = self._header
+        self._trailer.prev = self._header
         self._size = 0
 
     def __len__(self):

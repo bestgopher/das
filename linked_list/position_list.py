@@ -135,3 +135,16 @@ def insertion_sort(l: PositionList):
                 walk = l.before(walk)
             l.delete(pivot)
             l.add_before(walk, value)
+
+
+if __name__ == '__main__':
+    import random
+
+    l = PositionList()
+    for i in range(20):
+        l.add_last(random.randint(1, 100))
+
+    insertion_sort(l)
+
+    for i in l:
+        print(i)
