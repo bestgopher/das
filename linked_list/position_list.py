@@ -115,3 +115,23 @@ class PositionList(_DoublyLinkedBase):
         old_value = origin.value
         origin.value = e
         return old_value
+
+
+def insertion_sort(l: PositionList):
+    """Sort PositionalList of comparable elements into non-decreasing order."""
+
+    if len(l) == 0:
+        return
+
+    marker = l.first()
+    while marker != l.last():
+        pivot = l.after(marker)
+        value = pivot.element()
+        if value > marker.element():
+            marker = pivot
+        else:
+            walk = marker
+            while walk != l.first() and l.before(walk).element() > value:
+                walk = l.before(walk)
+            l.delete(pivot)
+            l.add_before(walk, value)
