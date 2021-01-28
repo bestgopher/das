@@ -18,10 +18,10 @@ class HeadPriorityQueue(PriorityQueueBase):
         return 2 * j + 2
 
     def _has_left(self, j):
-        return self._left(j) < len(self.data)
+        return self._left(j) < len(self._data)
 
     def _has_right(self, j):
-        return self._right(j) < len(self.data)
+        return self._right(j) < len(self._data)
 
     def _swap(self, i, j):
         """Swap the elements indices i and j of array."""
@@ -46,9 +46,21 @@ class HeadPriorityQueue(PriorityQueueBase):
                 self._swap(j, small_child)
                 self._downheap(small_child)
 
-    def __init__(self):
-        """"Create a new empty Priority Queue."""
-        self._data = []
+    def __init__(self, contents=()):
+        """"
+        Create a new empty Priority Queue.
+
+        By default, queue will be empty.if contents is given, it should be as an
+        iterable sequence of (k, v) tuple specifying the initial contents.
+        """
+        self._data = [self._Item(k, v) for k, v in contents]
+        if self._data:
+            self._heapify()
+
+    def _heapify(self):
+        start = self._parent(len(self) - 1)
+        for j in range(start, -1, -1):
+            self._downheap(j)
 
     def __len__(self):
         """Return the number of items in the priority queue."""
@@ -81,3 +93,9 @@ class HeadPriorityQueue(PriorityQueueBase):
         item = self._data.pop()
         self._downheap(0)
         return (item._key, item._value)
+
+
+if __name__ == '__main__':
+    q = HeadPriorityQueue(((10, 10), (3, 3), (2, 2), (9, 9), (4, 4), (5, 5), (8, 8), (6, 6), (7, 7)))
+    while not q.is_empty():
+        print(q.remove_min())
