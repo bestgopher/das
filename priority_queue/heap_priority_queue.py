@@ -27,13 +27,13 @@ class HeadPriorityQueue(PriorityQueueBase):
         """Swap the elements indices i and j of array."""
         self._data[i], self._data[j] = self._data[j], self._data[i]
 
-    def _uphead(self, j):
+    def _up_head(self, j):
         parent = self._parent(j)
         if j > 0 and self._data[j] < self._data[parent]:
             self._swap(j, parent)
-            self._uphead(parent)
+            self._up_head(parent)
 
-    def _downheap(self, j):
+    def _down_heap(self, j):
         if self._has_left(j):
             left = self._left(j)
             small_child = left
@@ -44,7 +44,7 @@ class HeadPriorityQueue(PriorityQueueBase):
 
             if self._data[j] > self._data[small_child]:
                 self._swap(j, small_child)
-                self._downheap(small_child)
+                self._down_heap(small_child)
 
     def __init__(self, contents=()):
         """"
@@ -60,7 +60,7 @@ class HeadPriorityQueue(PriorityQueueBase):
     def _heapify(self):
         start = self._parent(len(self) - 1)
         for j in range(start, -1, -1):
-            self._downheap(j)
+            self._down_heap(j)
 
     def __len__(self):
         """Return the number of items in the priority queue."""
@@ -70,7 +70,7 @@ class HeadPriorityQueue(PriorityQueueBase):
         """Add a key-value pair to the priority queue."""
         item = self._Item(key, value)
         self._data.append(item)
-        self._uphead(len(self._data) - 1)
+        self._up_head(len(self._data) - 1)
 
     def min(self):
         """
@@ -91,7 +91,7 @@ class HeadPriorityQueue(PriorityQueueBase):
             raise Empty("priority queue is empty")
         self._swap(0, len(self._data) - 1)
         item = self._data.pop()
-        self._downheap(0)
+        self._down_heap(0)
         return (item._key, item._value)
 
 
