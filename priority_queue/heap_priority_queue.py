@@ -27,11 +27,11 @@ class HeadPriorityQueue(PriorityQueueBase):
         """Swap the elements indices i and j of array."""
         self._data[i], self._data[j] = self._data[j], self._data[i]
 
-    def _up_head(self, j):
+    def _up_heap(self, j):
         parent = self._parent(j)
         if j > 0 and self._data[j] < self._data[parent]:
             self._swap(j, parent)
-            self._up_head(parent)
+            self._up_heap(parent)
 
     def _down_heap(self, j):
         if self._has_left(j):
@@ -70,7 +70,7 @@ class HeadPriorityQueue(PriorityQueueBase):
         """Add a key-value pair to the priority queue."""
         item = self._Item(key, value)
         self._data.append(item)
-        self._up_head(len(self._data) - 1)
+        self._up_heap(len(self._data) - 1)
 
     def min(self):
         """
