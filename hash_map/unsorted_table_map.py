@@ -2,7 +2,7 @@ from hash_map.map_base import MapBase
 
 
 class UnsortedTableMap(MapBase):
-    """Map implementation using an unordered list"""
+    """Map implementation using an unordered list."""
 
     def __init__(self):
         self._table = []
