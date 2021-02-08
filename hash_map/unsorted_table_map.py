@@ -30,7 +30,7 @@ class UnsortedTableMap(MapBase):
             if self._table[j]._key == key:
                 self._table.pop(j)
                 return
-        raise KeyError("Key Error: " + repr(key))
+        raise KeyError ("Key Error: " + repr(key))
 
     def __len__(self):
         """Return number of items in the map."""
